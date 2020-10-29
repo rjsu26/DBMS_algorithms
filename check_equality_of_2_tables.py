@@ -76,7 +76,7 @@ def populate():
 """ SQL based UNION method """
 def compare_union():
   print("Using UNION method..")
-  union_command = "select count(*) from (select t.id, count(*) from (select * from student1 union all select * from student2) t group by t.id, t.name, t.dob, t.city having count(*)=1) p;"
+  union_command = "select count(*) from (select t.id, count(*) from (select * from student1 union all select * from student2) t group by t.id, t.name, t.dob, t.city having count(*)=1 order by NULL) p order by NULL;"
   
   start = time.time()
   db_cursor.execute(union_command)
@@ -89,6 +89,7 @@ def compare_union():
     return [1,end-start]
 
 def compare_checksum():
+  # referred from : https://mariadb.com/resources/blog/a-hash-based-group-by-strategy-for-mysql/
   print("Hashing method..")
   start = time.time()
   create_temporary_table = "CREATE TEMPORARY TABLE tmp (id INT , hash BINARY(16)) ;" # a temporary table to contain the id and hash value
@@ -111,7 +112,7 @@ def compare_checksum():
 if __name__=="__main__":
   random.seed(time.time())
   global N
-  N = 1000 # number of tuples in the tables
+  N = 100000 # number of tuples in the tables
   # comment bottom 2 lines after 1st run of this program
   create_table()
   populate()

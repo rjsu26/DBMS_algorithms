@@ -13,4 +13,4 @@ Using MySQL and Python to implement some interesting DBMS algorithms listed in l
 
 1. **check_equality_of_2_tables.py**: Using 2 methods to compare 2 tables with sparesely different values and observing which of the 2 methods(UNION method and Hashing method) is faster
 
-2. 
+2. **closure_of_attribute_sets.py** : Implementing a quadratic and a liner time complexity algorithm to find closure of an attribute set in a given Functional Dependency.

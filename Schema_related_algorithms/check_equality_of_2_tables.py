@@ -52,16 +52,16 @@ def populate():
     name = fake.name()
     date = fake.date_between(datetime(1990, 1, 1), datetime(1999, 12, 31))
     city = fake.city()
-    row = [idx, name, date, city]
-    row2 = row[:]
+    # row = [idx, name, date, city]
+    # row2 = row[:]
     # print(row)
     # print(insert_command.format("student1", idx, name, date,city))
-    db_cursor.execute(insert_command.format("student1", idx, name, date,city))
+    db_cursor.execute(insert_command.format("student1", "NULL", name, date,city))
     if(random.random() <= probability):
       name = fake.name()
       city = fake.city()
       # print("Inserting different value: ",i)
-    db_cursor.execute(insert_command.format("student2", idx, name, date,city))
+    db_cursor.execute(insert_command.format("student2", "NULL", name, date,city))
 
   db_connection.commit()
 
@@ -73,8 +73,8 @@ def populate():
   # for row in db_cursor:
   #   print(row)
 
-""" SQL based UNION method """
 def compare_union():
+  """ SQL based UNION method """
   print("Using UNION method..")
   union_command = "select count(*) from (select t.id, count(*) from (select * from student1 union all select * from student2) t group by t.id, t.name, t.dob, t.city having count(*)=1 order by NULL) p order by NULL;"
   
@@ -100,12 +100,15 @@ def compare_checksum():
 
   # for row in db_cursor:
   #   print(row)
-  row_count = db_cursor.fetchone()[0]
   end = time.time() 
-  if row_count>0:
-    return [0, end-start]
-  else: 
-    return [1,end-start]
+  try:
+    row_count = db_cursor.fetchone()[0]
+    if row_count>0:
+      return [0, end-start]
+    else: 
+      return [1,end-start]
+  except :
+    return [1, end-start]
 
 
 

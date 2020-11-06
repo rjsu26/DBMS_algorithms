@@ -1,5 +1,6 @@
 /* Aim: To implement LRU : Least Recently Used cache-eviction policy */
 
+// Run command: g++ -c LRU.cpp -I ../
 using namespace std;
 #include <iostream>
 #include <vector>
@@ -13,11 +14,13 @@ using namespace std;
 LRU::LRU(int capacity)
 {
     this->capacity = capacity; // maximum number of profiles that can be cached
+    cout<<"Constructor called"<<endl;
 }
 
 /* Find input user_id in the cache. Return NULL if not found, else return a pointer to the profile in the memory */
 profile LRU ::get(int user_id)
 {
+    cout<<"get() called"<<endl;
     // if user_id exists, return pointer to profile, else return NULL
     if (mp.count(user_id) == 0)
         return profile();
@@ -34,6 +37,7 @@ profile LRU ::get(int user_id)
 /* Given a pointer to a profile, put it into the cache */
 void LRU::put(profile user_profile)
 {
+    cout<<"put() called"<<endl;
     int user_id = user_profile.userid;
     if (mp.size() == capacity && mp.count(user_id) == 0)
     { // size reached to maximum and requested entry not present already => remove least recently used profile

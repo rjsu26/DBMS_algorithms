@@ -5,13 +5,13 @@ using namespace std;
 #define PROFILE_H
 struct profile{
     int userid, age;
-    char sex;
+    string sex;
     string user_name;
     int followers_count, following_count;
     inline profile(){
         userid = -1;
     }
-    inline profile(int userid, string name, int count1, int count2, int age, char sex){
+    inline profile(int userid, string name, int count1, int count2, int age, string sex){
         this->userid=userid;
         this->user_name = name; 
         this->followers_count = count1;

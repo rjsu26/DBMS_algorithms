@@ -140,6 +140,7 @@ int Socket::recv(std::string &s) const
     else
     {
         s = buf;
+        // s+= '\0';
         return status;
     }
 }

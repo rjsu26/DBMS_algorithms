@@ -1,5 +1,5 @@
 // Implementation of the ClientSocket class
-
+#include<iostream>
 #include "clientsocket.h"
 #include "socketexception.h"
 
@@ -18,6 +18,7 @@ ClientSocket::ClientSocket(std::string host, int port)
 
 const ClientSocket &ClientSocket::operator<<(const std::string &s) const
 {
+    // std::cout<<"sending string: "<<s<<std::endl;
     if (!Socket::send(s))
     {
         throw SocketException("Could not write to socket.");
@@ -28,6 +29,7 @@ const ClientSocket &ClientSocket::operator<<(const std::string &s) const
 
 const ClientSocket &ClientSocket::operator<<(const int &s) const
 {
+    // std::cout<<"sending int: "<<s<<std::endl;
     if (!Socket::send(s))
     {
         throw SocketException("Could not write to socket.");
@@ -38,6 +40,7 @@ const ClientSocket &ClientSocket::operator<<(const int &s) const
 
 const ClientSocket &ClientSocket::operator>>(std::string &s) const
 {
+    // std::cout<<"bringing string: "<<s<<std::endl;
     if (!Socket::recv(s))
     {
         throw SocketException("Could not read from socket.");
@@ -48,6 +51,7 @@ const ClientSocket &ClientSocket::operator>>(std::string &s) const
 
 const ClientSocket &ClientSocket::operator>>(int &s ) const 
 {
+    // std::cout<<"bringing int: "<<s<<std::endl;
     if (!Socket::recv(s))
     {
         throw SocketException("Could not read from socket.");

@@ -9,12 +9,12 @@ using namespace std;
 #include <iterator>
 
 #include "LRU.h"
-#include "../profile.h"
+#include "profile.h"
 
 LRU::LRU(int capacity)
 {
     this->capacity = capacity; // maximum number of profiles that can be cached
-    cout<<"Constructor called"<<endl;
+    cout<<"Created an LRU cache with capacity: "<<capacity<<endl;
 }
 
 /* Find input user_id in the cache. Return NULL if not found, else return a pointer to the profile in the memory */

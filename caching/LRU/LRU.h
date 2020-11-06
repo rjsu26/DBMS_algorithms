@@ -1,7 +1,7 @@
 #include<unordered_map>
 #include<list>
 #include<iterator>
-#include "../profile.h"
+#include "profile.h"
 
 using namespace std; 
 
